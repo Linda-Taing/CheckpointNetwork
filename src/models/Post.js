@@ -7,9 +7,17 @@ export class Post {
         this.imgUrl = data.imgUrl
         this.creatorId = data.creatorId
         this.likeIds = data.likeIds
-        this.createdAt = new Date(data.createdAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric", })
         this.creator = new Profile(data.creator)
         this.likes = data.likes
+        this.createdAt = new Date(data.createdAt).toLocaleDateString('en-us', {
+            weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric"
+        });
     }
 
 

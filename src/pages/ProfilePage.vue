@@ -40,6 +40,7 @@ export default {
     props:{
         post:{
             type:Post,
+          
         }
     },
     setup(){
