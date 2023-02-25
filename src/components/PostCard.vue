@@ -1,6 +1,12 @@
 <template>
   <div class="card mb-3 mt-3">
     <h5 class="card-title p-3">{{ post.creator.name }}<i class="fs-3 gap-3 mdi mdi-heart"></i></h5>
+    <!-- NOTE  Remember to add back in for profile owners only  -->
+    <!-- <div v-if="Profile" class="d-flex justify-content-center"> -->
+    <div class="d-flex justify-content-around">
+      <button class="text-center p-2 my-1 createB btn btn-primary">Create Post</button>
+      <i class="mdi fs-3 trash mdi-delete-forever"></i>
+    </div>
     <img class="postImg" :src="post.creator.picture" :alt="post.creator.name">
     <div class="card-body">
       <div class="previewTxt pb-2">{{ post.body }}
@@ -39,6 +45,14 @@ export default {
 
 
 <style lang="scss" scoped>
+.trash {
+  color: red;
+}
+
+.createB {
+  width: fit-content;
+}
+
 .card {
   width: 40vh;
   border-color: black;
@@ -49,7 +63,7 @@ export default {
 ;
 
 .postImg {
-  height: 30vh;
+  height: 20vh;
   object-fit: cover;
 
 }
