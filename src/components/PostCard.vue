@@ -10,10 +10,10 @@
     <!-- NOTE  Remember to add back in for profile owners only  -->
     <!-- <div v-if="Profile" class="d-flex justify-content-center"> -->
     <div class="d-flex justify-content-around">
-      <i class="mdi plus mdi-plus fs-3"></i>
-      <i class="mdi fs-3 trash mdi-delete-forever"></i>
+      <i class="mdi plus mdi-plus fs-3 selectable" data-bs-toggle="modal" data-bs-target="#exampleModal">Post</i>
+      <i @click="removeProfile()" class="mdi fs-3 trash mdi-delete-forever selectable"></i>
     </div>
-    <img class="postImg" :src="post.creator.picture" :alt="post.creator.name">
+    <img class="postImg" :src="post.creator.coverImg" :alt="post.creator.name">
     <div class="card-body">
       <div class="previewTxt pb-2">{{ post.body }}
       </div>
@@ -39,6 +39,11 @@ export default {
         profilesService.setCurrentProfile(props.post.creator)
       }
     }
+  },
+  createProfile() {
+
+
+
   }
 }
 </script>

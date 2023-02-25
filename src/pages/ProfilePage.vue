@@ -4,6 +4,7 @@
             <img class="coverImg" :src="creator.coverImg" alt="">
         </div>
     </div>
+    <i class="mdi plus mdi-plus fs-3 selectable" data-bs-toggle="modal" data-bs-target="#exampleModal">Post</i>
 
     <div v-for="post in posts" class="container">
         <Post :post="post" />

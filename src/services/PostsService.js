@@ -18,5 +18,8 @@ class PostsService {
         logger.log(AppState.posts)
 
     }
+    clearPosts() {
+        AppState.posts = []
+    }
 }
 export const postsService = new PostsService()

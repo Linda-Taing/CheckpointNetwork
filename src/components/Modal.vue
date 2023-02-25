@@ -1,17 +1,14 @@
 <template>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
-            <div v-if="project" class="modal-content">
+            <div v-if="profile" class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ project.title }}</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ creator.name }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row">
-                            <div v-for="projectImg in project.projectImgs" class="col-12 text-center mb-3">
-                                <img :src="projectImg" alt="image" class="img-fluid rounded">
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,9 +23,16 @@
 
 
 <script>
+import { AppState } from '../AppState.js';
+import { computed } from 'vue';
+
 export default {
     setup() {
-        return {}
+        return {
+            profile: computed(() => AppState.profile),
+            post: computed(() => AppState.posts),
+            creator: computed(() => AppState.creator)
+        }
     }
 }
 </script>
