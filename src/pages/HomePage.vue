@@ -6,6 +6,10 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-center p-2">
+        <button class="me-2 btn btn-secondary">Prev</button> 0 <button class="ms-2 btn btn-primary">next</button>
+
+    </div>
 </template>
 
 <script>
