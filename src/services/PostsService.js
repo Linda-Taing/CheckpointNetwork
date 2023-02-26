@@ -2,6 +2,7 @@ import { logger } from "../utils/Logger.js";
 import { api } from "./AxiosService.js";
 import { AppState } from "../AppState.js";
 import { Post } from "../models/Post.js";
+import { sandboxApi } from "./AxiosService.js";
 class PostsService {
 
     async getAllPosts() {
@@ -9,10 +10,9 @@ class PostsService {
         logger.log('GET ALL POSTS', res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
         logger.log(AppState.posts)
-        AppState.nextPage = res.data.next
-        AppState.previousPage = res.data.previous
+        AppState.newerPage = res.data.newer
+        AppState.olderPage = res.data.older
     }
-
     async getPostById(creatorId) {
         const res = await api.get(`api/profiles/${creatorId}/posts`)
         logger.log('GET IDs', res.data)
@@ -25,11 +25,12 @@ class PostsService {
         return res.data
     }
 
-    async changePage() {
-        const res = await api.get('api/posts?page')
+    async changePage(url) {
+
+        const res = await api.get(url)
         logger.log('change page?', res.data)
-        AppState.nextPage = res.data.next
-        AppState.previousPage = res.data.previous
+        AppState.newerPage = res.data.newer
+        AppState.olderPage = res.data.older
         AppState.posts = res.data.posts
 
 

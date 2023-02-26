@@ -5,7 +5,7 @@ export class Profile {
     this.picture = data.picture
     this.bio = data.bio
     this.graduated = data.graduated
-    this.coverImg = data.coverImg || "https://images.unsplash.com/photo-1586829135343-132950070391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
+    this.coverImg = data.coverImg || "https://images.unsplash.com/photo-1676297712943-ea0ad2201230?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE2fEpwZzZLaWRsLUhrfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
     this.github = data.github
     this.linkedin = data.linkedin
     this.class = data.class

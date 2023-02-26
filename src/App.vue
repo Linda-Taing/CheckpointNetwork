@@ -7,19 +7,28 @@
   </main>
 
   <footer class="bg-dark text-light sticky-bottom">
-    Ad Side!!
+    <div class="container">
+      <div class="row">
+        <div v-for="ad in ads" class="col-md-10">
+          <AdCard :ad="ad" />
+        </div>
+      </div>
+    </div>
   </footer>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import AdCard from './components/AdCard.vue'
 
 export default {
   setup() {
+
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      ads: computed(() => AppState.ads)
     }
   },
   components: { Navbar }
@@ -36,7 +45,8 @@ export default {
 footer {
   display: grid;
   place-content: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 15em;
+
 }
 </style>

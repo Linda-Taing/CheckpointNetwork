@@ -13,8 +13,8 @@
             <input required v-model="editable.name" type="text" class="form-control" id="name" name="name">
           </div>
           <div class="mb-3">
-            <label for="name" class="form-label">name</label>
-            <input required v-model="editable.name" type="text" class="form-control" id="name" name="name">
+            <label for="name" class="form-label">class</label>
+            <input required v-model="editable.class" type="text" class="form-control" id="name" name="name">
           </div>
           <div class="mb-3">
             <label for="bio" class="form-label">bio</label>
@@ -43,6 +43,9 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { ref } from 'vue'
+import { logger } from '../utils/Logger.js'
+import Pop from '../utils/Pop.js'
+import { accountService } from '../services/AccountService.js'
 export default {
   setup() {
     const editable = ref({})
