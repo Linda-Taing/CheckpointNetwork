@@ -5,6 +5,10 @@
   <main>
     <router-view />
   </main>
+
+  <footer class="bg-dark text-light sticky-bottom">
+    Ad Side!!
+  </footer>
 </template>
 
 <script>
@@ -32,6 +36,7 @@ export default {
 footer {
   display: grid;
   place-content: center;
-  height: 32px;
+  height: 100vh;
+  width: 15em;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-    <div class="row">
-        <div class="col-md-6 mt-5 d-flex justify-content-center card rounded">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 d-flex justify-content-center card rounded">
             <span>
-                <img class="ms-2 mb-5 mt-5 rounded-circle" height="100" width="100" :src="post.creator.picture" alt>
+                <img class="ms-2 mb-5 mt-5 rounded-circle" height="80" width="80" :src="post.creator.picture" alt>
                 <div class="fs-2"><b>{{ post.creator.name }}</b>
                     <i class="mdi mdi-heart fs-3">{{ post.creator.likeId }}</i>
                 </div>

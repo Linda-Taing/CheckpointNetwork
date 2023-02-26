@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div v-for="p in posts" class="col-md-3 ">
+        <div class="row d-flex justify-content-center">
+            <div v-for="p in posts" class="col-md-7">
                 <PostCard :post="p" />
             </div>
         </div>

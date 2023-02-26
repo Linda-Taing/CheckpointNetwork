@@ -13,7 +13,7 @@
         <div class="mb-3">
             <label for="body" class="form-label">body</label>
             <textarea name="body" type="text" v-model="editable.body" class="form-control" id="body" rows="3">
-                                </textarea>
+                                        </textarea>
         </div>
         <div>
             <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
@@ -37,11 +37,9 @@ export default {
 
             async handleSubmit() {
                 try {
-                    const post = editable.value.id
+                    const post = editable.value
                     await postsService.createPost(editable.value)
                     logger.log('are you creating job to service?', error)
-
-
                     editable.value = {}
                     if (post?.id) {
                         router.push({ name: 'Profile', params: { creatorId: post.creator.id } })

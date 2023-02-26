@@ -26,7 +26,7 @@ class PostsService {
     }
 
     async changePage() {
-        const res = await api.get()
+        const res = await api.get('api/posts?page')
         logger.log('change page?', res.data)
         AppState.nextPage = res.data.next
         AppState.previousPage = res.data.previous

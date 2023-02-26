@@ -5,8 +5,13 @@
         </div>
     </div>
 
-    <div v-for="post in posts" class="container">
-        <Post :post="post" />
+    <div v-for=" post in posts" class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12">
+                <Post :post="post" />
+            </div>
+
+        </div>
     </div>
 </template>
 
