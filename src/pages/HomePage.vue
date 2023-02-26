@@ -6,9 +6,9 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center p-2">
-        <button class="me-2 btn btn-secondary">Prev</button> 0 <button class="ms-2 btn btn-primary">next</button>
-
+    <div class="d-flex justify-content-evenly">
+        <button class="btn btn-secondary me-3 " :disabled="!previousPage" @click="changePage(previousPage)">Prev</button>
+        <button class="btn btn-primary ms-3" :disabled="!nextPage" @click="changePage(nextPage)">Next</button>
     </div>
 </template>
 
@@ -35,8 +35,20 @@ export default {
             getAllPosts();
         });
         return {
-            posts: computed(() => AppState.posts)
+            posts: computed(() => AppState.posts),
+            nextPage: computed(() => AppState.nextPage),
+            previousPage: computed(() => AppState.previousPage),
         };
+
+    },
+    async changePage() {
+        try {
+            await postsService.changePage();
+        }
+        catch (error) {
+            console.error(error);
+            Pop.error(('change page?'), error.message);
+        }
     },
     components: { PostCard }
 }

@@ -7,15 +7,18 @@
           :title="`View ${post.creator.name}'s Profile!`">
       </div>
     </router-link>
-    <!-- NOTE  Remember to add back in for profile owners only  -->
-    <!-- <div v-if="Profile" class="d-flex justify-content-center"> -->
-    <!-- <div class="d-flex justify-content-around">
-      <i class="mdi plus mdi-plus fs-3 selectable" data-bs-toggle="modal" data-bs-target="#exampleModal">Post</i>
-      <i class="mdi fs-3 trash mdi-delete-forever selectable"></i>
-    </div> -->
-    <img class="postImg" :src="post.creator.coverImg" :alt="post.creator.name">
-    <div class="card-body">
-      <div class="previewTxt pb-2">{{ post.body }}
+    <div class="row" v-if="account.id">
+      <div class="col-md-12 text-end mb-3">
+        <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#test-modal">
+          Create Post
+        </button>
+      </div>
+      <Modal id="test-modal" modal-title="Create a Post">
+        <PostForm />
+      </Modal> <img class="postImg" :src="post.creator.coverImg" :alt="post.creator.name">
+      <div class="card-body">
+        <div class="previewTxt pb-2">{{ post.body }}
+        </div>
       </div>
     </div>
   </div>
@@ -25,7 +28,8 @@
 <script>
 import { Post } from '../models/Post.js';
 import { profilesService } from '../services/ProfilesService.js';
-
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
 export default {
   props: {
     post: {
@@ -34,6 +38,8 @@ export default {
   },
   setup(props) {
     return {
+      account: computed(() => AppState.account),
+
       setCurrentProfile() {
         console.log(props);
         profilesService.setCurrentProfile(props.post.creator)

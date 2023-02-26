@@ -13,4 +13,8 @@ export const AppState = reactive({
   post: null,
   /** @type {import('./models/Account.js').Account} */
 
+
+  nextPage: null,
+  previousPage: null
 })
+
