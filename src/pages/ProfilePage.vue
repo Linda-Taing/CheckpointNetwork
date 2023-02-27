@@ -67,10 +67,10 @@ export default {
         try {
             if (await Pop.confirm('Would you like to remove your Posting? Are you surely sure?')) {
                 await postsService.removePostById(postId)
-                router.push({ name: 'Jobs' })
+                router.push({ name: 'Profile' })
             }
         } catch (error) {
-            Pop.error(error, '[Removing Job]')
+            Pop.error(error, '[Removing Post]')
         }
     }
 }
