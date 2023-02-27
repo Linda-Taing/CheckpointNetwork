@@ -11,14 +11,12 @@
                         </a>
                     </span>
                 </div>
-                <!-- <span :class="`${post.creator.graduated ? 'cool-font' : ''}`">
-                </span> -->
                 <div>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="p-3">{{ post.creator.class }}
-                                    <button @click="removePostById" v-if="account.id == creator.id"
+                                    <button @click="removePostById(postId)" v-if="account.id == creator.id"
                                         class="btn w-20 p-2 btn-danger">Remove
                                         Post</button>
                                 </div>

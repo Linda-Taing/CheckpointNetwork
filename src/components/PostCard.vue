@@ -4,7 +4,7 @@
       <h5 class="card-title p-3">{{ post.creator.name }}<i @click="addLike"
           class="selectable fs-3 gap-3 mdi mdi-heart">Like
           here!</i>
-        <p>{{ post.likes.length }}</p>
+        ({{ post.likes.length }})
       </h5>
       <router-link :to="{ name: 'Profile', params: { creatorId: post.creator.id } }">
         <div class="d-flex justify-content-end p-3">
@@ -33,13 +33,18 @@ import { AppState } from '../AppState.js';
 export default {
   props: {
     post: {
-      type: Post,
-      default: () => ({ likes: [] })
+      type: Post, required: true,
+      default: () => ({ likes: [], likeId: [] })
+    }
+  },
+  //Because likes came back undefined using a mounted hook, so it can be initialized to be used for like click. set method is to give object initial value. ---it doesn't work...
+  mounted() {
+    if (!this.post.likes) {
+      this.$set(this.post, 'likes', []);
     }
   },
   setup(props) {
     return {
-
       account: computed(() => AppState.account),
       creator: computed(() => AppState.currentProfile),
       addLike() {
