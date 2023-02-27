@@ -19,6 +19,11 @@
                             <i class="mdi mdi-github"></i>
                         </a>
                     </p>
+                    <p>
+                        <a :href="creator.linkedin" target="_blank">
+                            <i class="mdi mdi-linkedin"></i>
+                        </a>
+                    </p>
                     <p>{{ creator.class }}</p>
                 </div>
                 <div class="container">

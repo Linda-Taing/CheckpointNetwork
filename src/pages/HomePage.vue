@@ -20,8 +20,8 @@
         </div>
     </div>
     <div class="d-flex justify-content-evenly">
-        <button class="btn btn-secondary me-3 " :disabled="!olderPage" @click="changePage(olderPage)">Prev</button>
-        <button class="btn btn-primary ms-3" :disabled="!newerPage" @click="changePage(newerPage)">Next</button>
+        <button class="btn btn-primary ms-3" :disabled="!olderPage" @click="changePage(olderPage)">Prev</button>
+        <button class="btn btn-secondary me-3" :disabled="!newerPage" @click="changePage(newerPage)">Next</button>
     </div>
 </template>
 
@@ -76,7 +76,8 @@ export default {
         }
         catch (error) {
             console.error(error);
-            Pop.error(('change page?'), error.message);
+
+            Pop.error('(change page?)', error.message);
         }
     },
     components: { PostCard, AdCard, ProfileCard }

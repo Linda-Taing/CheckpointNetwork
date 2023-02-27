@@ -10,6 +10,7 @@ class PostsService {
         logger.log('GET ALL POSTS', res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
         logger.log(AppState.posts)
+        AppState.posts = res.data.posts
         AppState.newerPage = res.data.newer
         AppState.olderPage = res.data.older
     }
@@ -21,19 +22,19 @@ class PostsService {
     }
     async createPost(creatorId) {
         const res = await api.post(`api/posts`, creatorId)
-        console.log('did you get to the api?')
+        console.log('did you get to the api')
         AppState.posts.push(res.data)
         console.log('are you in the AppState?')
 
     }
 
     async changePage(url) {
-
         const res = await api.get(url)
-        logger.log('change page?', res.data)
+        logger.log('change page', res.data)
         AppState.newerPage = res.data.newer
         AppState.olderPage = res.data.older
         AppState.posts = res.data.posts
+        return res
 
 
     }
