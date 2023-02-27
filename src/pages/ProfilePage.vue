@@ -5,24 +5,36 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-start p-3">
+        <div class="row d-flex justify-content-start">
+            <div class="col-md-8">
+                <div class=" p-3">
                     <img class="rounded-circle" height="100" width="100" :src="creator.picture" :alt="creator.name">
-                    <p>{{ creator.name }}</p>
-                    <p>{{ creator.bio }}</p>
-                    <a :href="creator.github" target="_blank">
-                        <i class="mdi mdi-github"></i>
-                    </a>
+                </div>
+                <div class=" d-flex justify-content-evenly">
+                    <p class="me-2">{{ creator.name }} </p>
+                    <i :class="`${creator.graduated ? 'fas fa-graduation-cap' : 'fas fa-user'}`">
+                    </i>
+                    <p>
+                        <a :href="creator.github" target="_blank">
+                            <i class="mdi mdi-github"></i>
+                        </a>
+                    </p>
                     <p>{{ creator.class }}</p>
-                    <span :class="`${creator.graduated ? 'cool-font' : 'ugly-font'}`">
-                        {{ creator.name }}
-                    </span>
-
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div>
+                                <p class=""><b>Bio:</b><span></span>{{ creator.bio }} </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <div v-for=" post in posts" class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
@@ -101,16 +113,5 @@ export default {
 
 .decor {
     border: 2px 2px 3px blue;
-}
-
-.cool-font {
-    font-family: 'Satisfy', cursive;
-
-    font-size: 3em;
-}
-
-.ugly-font {
-    font-family: 'Gloria Hallelujah', cursive;
-    font-size: 3em;
 }
 </style>
