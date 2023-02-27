@@ -6,14 +6,19 @@
                     <img class="ms-2 mb-5 mt-5 rounded-circle" height="80" width="80" :src="post.creator.picture" alt>
                     <div class="fs-2"><b>{{ post.creator.name }}</b>
                         <i class="mdi mdi-heart fs-3">{{ post.creator.likeId }}</i>
-                    </div>
-                    <div class="p-3">{{ post.creator.createdAt }}</div>
-                    <div class="p-3">{{ post.creator.class }}
                         <span v-if="post.creator.github">
                             <a :href="post.creator.github" target="_blank">
                                 <i class="mdi mdi-github"></i>
                             </a>
                         </span>
+                        <div class="">{{ post.creator.createdAt }}</div>
+                    </div>
+                    <div>
+                        <div class="p-3">{{ post.creator.class }}
+                            <button @click="removePostById" v-if="account.id == creator.id"
+                                class="btn w-20 p-2 btn-danger">Remove
+                                Post</button>
+                        </div>
                     </div>
                 </div>
             </span>
@@ -29,6 +34,8 @@
 
 <script>
 import { Post } from '../models/Post.js';
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
 
 
 export default {
@@ -39,7 +46,12 @@ export default {
     },
 
     setup() {
-        return {}
+
+        return {
+            posts: computed(() => AppState.posts),
+            creator: computed(() => AppState.currentProfile),
+            account: computed(() => AppState.account)
+        }
     }
 }
 </script>

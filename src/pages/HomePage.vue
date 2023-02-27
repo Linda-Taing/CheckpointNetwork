@@ -1,11 +1,14 @@
 <template>
     <div class="container">
-        <div class="row d-flex justify-content-center card border border-dark mt-5">
-            <div class="col-md-12">
-                <PostForm />
-                <!-- <div v-if="pro in profiles">
-                    <ProfileCard :profile="pro" />
-                </div> -->
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-md-4">
+                <div class="row" v-if="account.id">
+                    <div class="col-md-12 text-end mb-3">
+                        <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#test-modal">
+                            Create Post
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -59,6 +62,7 @@ export default {
         });
 
         return {
+            account: computed(() => AppState.account),
             posts: computed(() => AppState.posts),
             newerPage: computed(() => AppState.newerPage),
             olderPage: computed(() => AppState.olderPage),

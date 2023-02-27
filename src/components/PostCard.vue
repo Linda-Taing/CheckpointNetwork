@@ -8,22 +8,19 @@
             :title="`View ${post.creator.name}'s Profile!`">
         </div>
       </router-link>
-      <div class="row" v-if="account.id">
-        <div class="col-md-12 text-end mb-3">
-          <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#test-modal">
-            Create Post
-          </button>
-        </div>
-        <Modal id="test-modal" modal-title="Create a Post">
-          <PostForm />
-        </Modal> <img class="postImg" :src="post.creator.coverImg" :alt="post.creator.name">
-        <div class="card-body">
-          <div class="previewTxt pb-2">{{ post.body }}
-          </div>
+      <Modal id="test-modal" modal-title="Create a Post">
+        <PostForm />
+      </Modal> <img class="postImg" :src="post.creator.coverImg" :alt="post.creator.name">
+      <div class="card-body">
+        <div class="previewTxt pb-2">{{ post.body }}
         </div>
       </div>
     </div>
   </div>
+  <!-- <div>
+    <button @click="removePosting" v-if="account.id == .creatorId" class="btn w-75 p-2 btn-danger">Remove
+      Posting</button>
+  </div> -->
 </template>
 
 
@@ -40,6 +37,7 @@ export default {
   },
   setup(props) {
     return {
+
       account: computed(() => AppState.account),
 
       setCurrentProfile() {
@@ -63,10 +61,10 @@ export default {
 }
 
 .card {
-  width: 40vh;
+  width: 30em;
   border-color: black;
   border-radius: 2%;
-  box-shadow: 2px 2px 4px red;
+  box-shadow: 2px 2px 4px rgb(43, 37, 37);
 }
 
 ;
@@ -84,6 +82,6 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
 }
 </style>

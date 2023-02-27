@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row d-flex">
-            <div class="col-md-2 ">
+        <div class="row">
+            <div class="col-md-3">
                 <h6 class="text-center">{{ ad.title }}</h6>
                 <img class="ads mb-3" :src="ad.tall" :alt="ad.title">
             </div>
@@ -20,7 +20,19 @@ export default {
         ad: { type: Ad, }
     },
     setup() {
+        async function getAllAds() {
+            try {
+                await adsService.getAllAds();
+            }
+            catch (error) {
+                logger.log(error);
+                Pop.error(error);
+            }
+        } onMounted(() => {
+            getAllAds();
+        });
         return {
+            ads: computed(() => AppState.ads)
         }
     }
 }
