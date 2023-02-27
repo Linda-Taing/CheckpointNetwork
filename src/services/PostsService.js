@@ -21,8 +21,10 @@ class PostsService {
     }
     async createPost(creatorId) {
         const res = await api.post(`api/posts`, creatorId)
+        console.log('did you get to the api?')
         AppState.posts.push(res.data)
-        return res.data
+        console.log('are you in the AppState?')
+
     }
 
     async changePage(url) {
