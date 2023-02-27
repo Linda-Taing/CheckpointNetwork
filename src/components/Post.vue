@@ -36,6 +36,9 @@
 import { Post } from '../models/Post.js';
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+import { postsService } from '../services/postsService.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
 
 
 export default {
@@ -51,6 +54,17 @@ export default {
             posts: computed(() => AppState.posts),
             creator: computed(() => AppState.currentProfile),
             account: computed(() => AppState.account)
+        }
+    },
+    async removePostById(postId) {
+        try {
+            if (await Pop.confirm('Would you like to remove your Posting? Are you surely sure?')) {
+                await postsService.removePostById(postId)
+                router.push({ name: 'Post' })
+            }
+        } catch (error) {
+            Pop.error(error, '[Removing Post]')
+            logger.log('Are you deleted?')
         }
     }
 }

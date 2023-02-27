@@ -1,11 +1,12 @@
 <template>
+    <div class="col-md-12">
+        <h6 class="text-center">{{ ad.title }}</h6>
+    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h6 class="text-center">{{ ad.title }}</h6>
-                <img class="ads mb-3" :src="ad.tall" :alt="ad.title">
-            </div>
+        <div class="col-md-12">
+            <img class="ads mb-3" :src="ad.tall" :alt="ad.title">
         </div>
+
     </div>
 </template>
 
@@ -14,6 +15,10 @@
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import { Ad } from '../services/Ad.js';
+import { onMounted } from 'vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { adsService } from '../services/AdsService.js';
 
 export default {
     props: {
@@ -32,7 +37,7 @@ export default {
             getAllAds();
         });
         return {
-            ads: computed(() => AppState.ads)
+            // ads: computed(() => AppState.ads)
         }
     }
 }

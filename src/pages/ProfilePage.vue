@@ -63,16 +63,17 @@ export default {
             account: computed(() => AppState.account)
         }
     },
-    async removePostsById(postId) {
-        try {
-            if (await Pop.confirm('Would you like to remove your Posting? Are you surely sure?')) {
-                await postsService.removePostById(postId)
-                router.push({ name: 'Profile' })
-            }
-        } catch (error) {
-            Pop.error(error, '[Removing Post]')
-        }
-    }
+    // moved to the Post.vue
+    // async removePostById(postId) {
+    //     try {
+    //         if (await Pop.confirm('Would you like to remove your Posting? Are you surely sure?')) {
+    //             await postsService.removePostById(postId)
+    //             router.push({ name: 'Post' })
+    //         }
+    //     } catch (error) {
+    //         Pop.error(error, '[Removing Post]')
+    //     }
+    // }
 }
 
 </script>

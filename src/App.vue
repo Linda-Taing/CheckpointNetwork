@@ -8,9 +8,13 @@
 
   <footer class="bg-dark text-light sticky-bottom">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- <form @submit.prevent="searchProfiles()">
+      <div class="row d-flex justify-content-center">
+
+        <div v-for="ad in ads" class="col-md-10">
+          <AdCard :ad="ad" />
+        </div>
+        <!-- Note need pagination first -->
+        <!-- <form @submit.prevent="searchProfiles()">
             <div class="input-group mb-3 me-3">
               <input v-model="editable.query" required type="text" class="form-control" placeholder="Search profiles"
                 aria-label="Search profiles" aria-describedby="button-addon2">
@@ -19,12 +23,9 @@
               </button>
             </div>
           </form> -->
-        </div>
-        <div v-if="ad in ads" class="col-md-10">
-          <AdCard :ad="ad" />
-        </div>
       </div>
     </div>
+
   </footer>
 </template>
 
@@ -73,7 +74,7 @@ export default {
 
 footer {
   display: grid;
-  place-content: center;
+  place-content: top;
   min-height: 100vh;
   width: 20em;
 

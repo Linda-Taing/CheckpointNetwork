@@ -17,10 +17,6 @@
       </div>
     </div>
   </div>
-  <!-- <div>
-    <button @click="removePosting" v-if="account.id == .creatorId" class="btn w-75 p-2 btn-danger">Remove
-      Posting</button>
-  </div> -->
 </template>
 
 

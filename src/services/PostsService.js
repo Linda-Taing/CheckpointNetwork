@@ -37,7 +37,7 @@ class PostsService {
 
 
     }
-    async removeJob(postId) {
+    async removePostById(postId) {
         const res = await api.delete('api/posts/' + postId)
         let i = AppState.posts.findIndex(p => p.id == postId)
         if (i != -1) {
