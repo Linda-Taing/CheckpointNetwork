@@ -15,7 +15,6 @@
       <Modal id="test-modal" modal-title="Create a Post">
         <PostForm />
       </Modal>
-      <img class="postImg" :src="post.creator.coverImg" :alt="creator.name">
       <div class="card-body">
         <div class="previewTxt pb-2">{{ post.body }}
         </div>

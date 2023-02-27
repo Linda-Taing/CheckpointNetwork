@@ -9,7 +9,7 @@ export class Post {
         this.likeIds = data.likeIds
         this.creator = new Profile(data.creator)
         this.likes = data.likes
-        this.createdAt = new Date(data.createdAt).toLocaleDateString();
+        this.createdAt = new Date(data.createdAt).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' });
     }
 
 

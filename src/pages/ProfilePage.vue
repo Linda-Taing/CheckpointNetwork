@@ -11,7 +11,7 @@
                     <img class="rounded-circle" height="100" width="100" :src="creator.picture" :alt="creator.name">
                 </div>
                 <div class=" d-flex justify-content-evenly">
-                    <p class="me-2">{{ creator.name }} </p>
+                    <p class=" fs-3 pretty">{{ creator.name }} </p>
                     <i :class="`${creator.graduated ? 'fas fa-graduation-cap' : 'fas fa-user'}`">
                     </i>
                     <p>
@@ -109,6 +109,10 @@ export default {
     height: 20em;
     width: 100%;
     object-fit: cover;
+}
+
+.pretty {
+    font-family: 'Satisfy', cursive;
 }
 
 .decor {
