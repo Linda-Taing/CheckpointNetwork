@@ -9,7 +9,6 @@
   <footer class="bg-dark text-light sticky-bottom">
     <div class="container">
       <div class="row d-flex justify-content-center">
-
         <div v-for="ad in ads" class="col-md-10">
           <AdCard :ad="ad" />
         </div>

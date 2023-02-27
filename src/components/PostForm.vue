@@ -17,7 +17,7 @@
                         <label for="body" class="form-label"></label>
                         <textarea name="body" type="text" v-model="editable.body" class="form-control" id="body" rows="3"
                             placeholder="Spill the tea...">
-                                                                                                            </textarea>
+                                                                                                                            </textarea>
                     </div>
                     <div class="d-flex justify-content-center pb-2">
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
@@ -49,17 +49,17 @@ export default {
         const editable = ref({})
         return {
             editable,
-            post: computed(() => AppState.posts),
+            posts: computed(() => AppState.posts),
 
             async handleSubmit() {
                 try {
-                    let posts = editable.value
+                    const form = editable.value
                     await postsService.createPost(editable.value)
                     logger.log('are you creating Post to service?')
                     editable.value = {}
-                    if (post?.id) {
-                        router.push({ name: 'Profile', params: { creatorId: post.creator.id } })
-                    }
+                    // if (post?.id) {
+                    //     router.push({ name: 'Profile', params: { creatorId: post.creator.id } })
+                    // }
                 } catch (error) {
                     Pop.error(error, '[Submitting Post]')
                 }

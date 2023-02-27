@@ -1,16 +1,21 @@
 <template>
   <div class="container">
     <div class="card mb-3 mt-3">
-      <h5 class="card-title p-3">{{ post.creator.name }}<i class="fs-3 gap-3 mdi mdi-heart"></i></h5>
+      <h5 class="card-title p-3">{{ post.creator.name }}<i @click="addLike"
+          class="selectable fs-3 gap-3 mdi mdi-heart">Like
+          here!</i>
+        <p>{{ post.likes.length }}</p>
+      </h5>
       <router-link :to="{ name: 'Profile', params: { creatorId: post.creator.id } }">
         <div class="d-flex justify-content-end p-3">
-          <img class="rounded-circle" height="70" width="70" :src="post.creator.picture" :alt="post.creator.name"
+          <img class="rounded-circle" height="70" width="70" :src="post.creator.picture" :alt="creator.name"
             :title="`View ${post.creator.name}'s Profile!`">
         </div>
       </router-link>
       <Modal id="test-modal" modal-title="Create a Post">
         <PostForm />
-      </Modal> <img class="postImg" :src="post.creator.coverImg" :alt="post.creator.name">
+      </Modal>
+      <img class="postImg" :src="post.creator.coverImg" :alt="creator.name">
       <div class="card-body">
         <div class="previewTxt pb-2">{{ post.body }}
         </div>
@@ -29,13 +34,17 @@ export default {
   props: {
     post: {
       type: Post,
+      default: () => ({ likes: [] })
     }
   },
   setup(props) {
     return {
 
       account: computed(() => AppState.account),
-
+      creator: computed(() => AppState.currentProfile),
+      addLike() {
+        this.post.likes.push({})
+      },
       setCurrentProfile() {
         console.log(props);
         profilesService.setCurrentProfile(props.post.creator)
@@ -44,18 +53,12 @@ export default {
   },
 
 }
+
+
 </script>
 
 
 <style lang="scss" scoped>
-.trash {
-  color: red;
-}
-
-.plus {
-  color: blue;
-}
-
 .card {
   width: 30em;
   border-color: black;
