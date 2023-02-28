@@ -39,7 +39,7 @@
         </div>
     </div>
 
-
+    <!-- THis is in the Post Vue -->
     <div v-for=" post in posts" class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">

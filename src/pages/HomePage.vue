@@ -7,6 +7,9 @@
                         <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#test-modal">
                             Create Post
                         </button>
+                        <Modal id="test-modal" modal-title="Create a Post">
+                            <PostForm />
+                        </Modal>
                     </div>
                 </div>
             </div>

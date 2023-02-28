@@ -16,6 +16,15 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="p-3">{{ post.creator.class }}
+                                    <div class="row" v-if="account.id">
+                                        <button class="my-3 w-25 btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#test-modal">
+                                            Create Post
+                                        </button>
+                                        <Modal id="test-modal" modal-title="Create a Post">
+                                            <PostForm />
+                                        </Modal>
+                                    </div>
                                     <button @click="removePostById(post.id)" v-if="account.id == creator.id"
                                         class="btn w-20 p-2 btn-danger">Remove
                                         Post</button>
@@ -26,7 +35,7 @@
                 </div>
             </div>
             <div class="fs-6"> {{ post.bio }}
-                <img class="rounded decor border border-5 opacity-60 coverImg mt-2 p-3" :src="post.creator.coverImg"
+                <img class="rounded decor border border-5 opacity-60 coverImg mt-2 p-3" :src="post.imgUrl"
                     :alt="post.creator.name">
             </div>
             <div class="mb-2">{{ post.createdAt }}</div>

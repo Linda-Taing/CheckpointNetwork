@@ -1,23 +1,32 @@
 <template>
   <div class="container">
     <div class="card mb-3 mt-3">
-      <h5 class="card-title p-3">{{ post.creator.name }}<i @click="addLike"
-          class="selectable fs-3 gap-3 mdi mdi-heart">Like
-          here!</i>
-        ({{ post.likes.length }})
-      </h5>
-      <router-link :to="{ name: 'Profile', params: { creatorId: post.creator.id } }">
-        <div class="d-flex justify-content-end p-3">
-          <img class="rounded-circle" height="70" width="70" :src="post.creator.picture" :alt="creator.name"
-            :title="`View ${post.creator.name}'s Profile!`">
+      <div class="row ">
+        <div class="col-md-12">
+          <h5 class="card-title p-3">{{ post.creator.name }} </h5>
+          <router-link :to="{ name: 'Profile', params: { creatorId: post.creator.id } }">
+            <div class="d-flex justify-content-start p-3">
+              <img class="rounded-circle" height="70" width="70" :src="post.creator.picture" :alt="creator.name"
+                :title="`View ${post.creator.name}'s Profile!`">
+            </div>
+          </router-link>
+
+
+          <i @click="addLike" class="selectable fs-5 ms-3 me-3 mdi mdi-heart">Like
+            Count: {{ post.likes.length }}</i>
+
         </div>
-      </router-link>
-      <Modal id="test-modal" modal-title="Create a Post">
+      </div>
+
+      <!-- <Modal id="test-modal" modal-title="Create a Post">
         <PostForm />
-      </Modal>
+      </Modal> -->
       <div class="card-body">
-        <div class="previewTxt pb-2">{{ post.body }}
+        <span class="d-flex justify-content-between">
+          {{ post.createdAt }}</span>
+        <div class="previewTxt pb-2 fw-bold">Post:
         </div>
+        {{ post.body }}
       </div>
     </div>
   </div>
