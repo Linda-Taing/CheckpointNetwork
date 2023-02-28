@@ -83,15 +83,7 @@ export default {
                     logger.log('Are you deleted?')
                 }
             },
-            addLike() {
-                try {
 
-                } catch (error) {
-                    Pop.error(error, '[ADDING LIKES]')
-                    logger.log('i do not like you!!')
-                }                // FIXME we need to pass the id of the post to this method, reference your removePostById()
-                // FIXME pass that id down to your service, so we can use it in a network request
-            },
         }
     },
 

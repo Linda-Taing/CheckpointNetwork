@@ -23,7 +23,9 @@ export const AppState = reactive({
   profiles: [],
 
   newerPage: null,
-  olderPage: null
+  olderPage: null,
+
+  likes: []
 
 })
 

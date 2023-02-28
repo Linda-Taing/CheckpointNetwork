@@ -11,14 +11,11 @@
             </div>
           </router-link>
           <div class="col-md-12">
-            <i @click="addLike" class="selectable fs-5 ms-3 me-3 mdi mdi-heart">Like
+            <i @click="addLike()" class="selectable fs-5 ms-3 me-3 mdi mdi-heart">Like
               Count: {{ post.likes.length }}</i> {{ post.createdAt }}
             <div class="ms-3 previewTxt pb-2 fw-bold">Post:</div>
             <div class="ms-5 pb-2">{{ post.body }}</div>
-
             <img class="img-fluid" :src="post.imgUrl" :alt="creator.coverImg">
-
-
             <div>
             </div>
           </div>
@@ -34,6 +31,10 @@ import { Post } from '../models/Post.js';
 import { profilesService } from '../services/ProfilesService.js';
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
+import { postsService } from '../services/postsService.js';
+
 export default {
   props: {
     post: {
@@ -41,22 +42,23 @@ export default {
       default: () => ({ likes: [], likeId: [] })
     }
   },
-  //Because likes came back undefined using a mounted hook, so it can be initialized to be used for like click. set method is to give object initial value. ---it doesn't work...
-  mounted() {
-    if (!this.post.likes) {
-      this.$set(this.post, 'likes', []);
-    }
-  },
+
   setup(props) {
     return {
       account: computed(() => AppState.account),
       creator: computed(() => AppState.currentProfile),
-      addLike() {
-        this.post.likes.push({})
-      },
       setCurrentProfile() {
         console.log(props);
         profilesService.setCurrentProfile(props.post.creator)
+      },
+      async addLike(postId) {
+        try {
+          await postsService.addLike(postId)
+        } catch (error) {
+          Pop.error(error, '[ADDING LIKES]')
+          logger.log('i do not like you!!')
+        } // FIXME we need to pass the id of the post to this method, reference your removePostById()
+        // FIXME pass that id down to your service, so we can use it in a network request
       }
     }
   },

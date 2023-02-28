@@ -54,12 +54,16 @@ class PostsService {
         AppState.posts = []
     }
 
+    async addLike(postId) {
+        console.log('[LIKES HERE]')
+        const res = await api.post(`/api/posts/${postId}/like`)
+        logger.log('You make it here like?')
+        let i = AppState.likes.findIndex(p => p.id == postId)
+        if (i != 1) {
+            AppState.likes.splice(i, 1)
 
-
-
-    addLike(postId) {
-        // FIXME make a post request to /api/posts/:postId/likes
-        // FIXME the 200 response should be the updated post information, splice the old one out of our array, and replace it with the res.data, don't forget to turn the the res.data into your class model
+        }
     }
-}
+}        // FIXME make a post request to /api/posts/:postId/likes
+// FIXME the 200 response should be the updated post information, splice the old one out of our array, and replace it with the res.data, don't forget to turn the the res.data into your class model
 export const postsService = new PostsService()
