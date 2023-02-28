@@ -21,8 +21,8 @@
     </div>
     <div class="d-flex justify-content-evenly">
         <!-- Note: Make sure the names are the same from the api. -->
-        <button class="btn btn-primary ms-3" :disabled="!newerPage" @click="changePage(newerPage)">Next</button>
-        <button class="btn btn-secondary me-3" :disabled="!olderPage" @click="changePage(olderPage)">Previous</button>
+        <button class="btn btn-primary ms-3" :disabled="!newerPage" @click="changePage(newerPage)">Previous</button>
+        <button class="btn btn-secondary me-3" :disabled="!olderPage" @click="changePage(olderPage)">Next</button>
     </div>
 </template>
 
@@ -63,17 +63,17 @@ export default {
             profiles: computed(() => AppState.profile),
 
             // Linda's note : need to look at this to adjust disabled buttons.
-            // async changePage(url) {
-            //     try {
-            //         // logger.log(url)
-            //         await postsService.changePage(url);
-            //     }
-            //     catch (error) {
-            //         console.error(error);
+            async changePage(url) {
+                try {
+                    // logger.log(url)
+                    await postsService.changePage(url);
+                }
+                catch (error) {
+                    console.error(error);
 
-            //         Pop.error('(change page?)', error.message);
-            //     }
-            // },
+                    Pop.error('(change page?)', error.message);
+                }
+            },
         };
     },
 

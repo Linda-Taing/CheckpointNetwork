@@ -18,16 +18,16 @@ class PostsService {
         const res = await api.get(`api/profiles/${creatorId}/posts`)
         logger.log('GET IDs', res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
-        // FIXME save the page information in your AppState
-        AppState.posts = res.data
         logger.log(AppState.posts)
+        // FIXME save the page information in your AppState[[ATTEMPTED TO BUT IT BROKE MY PROFILE PAGE AND DREW EVERYONE'S POST THERE...2/27/23]]
+        // AppState.posts = res.data
     }
     async createPost(creatorId) {
         const res = await api.post(`api/posts`, creatorId)
         console.log('did you get to the api')
 
         // FIXME use your model!!!! [[FROM ABOVE]]
-        AppState.posts.push(res.data)
+        AppState.posts.upshift(res.data)
         console.log('are you in the AppState?')
 
     }
