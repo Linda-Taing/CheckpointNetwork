@@ -54,7 +54,7 @@ class PostsService {
         AppState.posts = []
     }
 
-    async addLike() {
+    async addLike(postId) {
         console.log('[LIKES HERE]')
         const res = await api.post(`/api/posts/${postId}/like`)
         logger.log('You make it here like?')
