@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="p-3">{{ post.creator.class }}
-                                    <div class="row" v-if="account.id">
+                                    <div class="row" v-if="account.id == creator.id">
                                         <button class="my-3 w-25 btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#test-modal">
                                             Create Post
@@ -84,7 +84,12 @@ export default {
                 }
             },
             addLike() {
-                // FIXME we need to pass the id of the post to this method, reference your removePostById()
+                try {
+
+                } catch (error) {
+                    Pop.error(error, '[ADDING LIKES]')
+                    logger.log('i do not like you!!')
+                }                // FIXME we need to pass the id of the post to this method, reference your removePostById()
                 // FIXME pass that id down to your service, so we can use it in a network request
             },
         }
