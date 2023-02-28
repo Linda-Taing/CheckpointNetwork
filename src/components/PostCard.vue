@@ -11,7 +11,7 @@
             </div>
           </router-link>
           <div class="col-md-12">
-            <i @click="addLike()" class="selectable fs-5 ms-3 me-3 mdi mdi-heart">Like
+            <i @click="addLike(post.id)" class="selectable fs-5 ms-3 me-3 mdi mdi-heart">Like
               Count: {{ post.likes.length }}</i> {{ post.createdAt }}
             <div class="ms-3 previewTxt pb-2 fw-bold">Post:</div>
             <div class="ms-5 pb-2">{{ post.body }}</div>
@@ -53,6 +53,7 @@ export default {
       },
       async addLike(postId) {
         try {
+          console.log('line 56')
           await postsService.addLike(postId)
         } catch (error) {
           Pop.error(error, '[ADDING LIKES]')
