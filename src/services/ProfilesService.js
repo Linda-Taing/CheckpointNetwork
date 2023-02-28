@@ -1,6 +1,7 @@
 import { api } from "./AxiosService.js";
 import { AppState } from "../AppState.js";
 import { logger } from "../utils/Logger.js";
+import { Profile } from "../models/Account.js";
 
 
 class ProfilesService {
@@ -15,13 +16,14 @@ class ProfilesService {
     }
 
     async searchProfiles(searchData) {
-        const res = await api.get('api/profiles?query=', { params: searchData })
+        // FIXME searchData needs to be an object, it should look like this: {query: 'jerms'}
+        logger.log(searchData)
+        const res = await api.get('api/profiles', { params: searchData })
         logger.log('searching api', res.data)
         AppState.profiles = res.data.results.map(p => new Profile(p))
-        // Note: need to get pagination before search queries
-        // AppState.currentPage = res.data.page
-        // AppState.totalPages = res.data.total_pages
     }
+
+
 
 }
 

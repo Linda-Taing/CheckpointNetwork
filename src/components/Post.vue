@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="p-3">{{ post.creator.class }}
-                                    <button @click="removePostById(postId)" v-if="account.id == creator.id"
+                                    <button @click="removePostById(post.id)" v-if="account.id == creator.id"
                                         class="btn w-20 p-2 btn-danger">Remove
                                         Post</button>
                                 </div>
@@ -58,25 +58,30 @@ export default {
     setup() {
 
         return {
+
             posts: computed(() => AppState.posts),
             creator: computed(() => AppState.currentProfile),
-            account: computed(() => AppState.account)
+            account: computed(() => AppState.account),
+            async removePostById(postId) {
+                try {
+                    if (await Pop.confirm('Would you like to remove your Posting? Are you surely sure?')) {
+                        await postsService.removePostById(postId)
+                        // REVIEW probably don't need to change pages here
+                        // router.push({ name: 'Post' })
+                    }
+                } catch (error) {
+                    Pop.error(error, '[Removing Post]')
+                    logger.log('Are you deleted?')
+                }
+            },
+            addLike() {
+                // FIXME we need to pass the id of the post to this method, reference your removePostById()
+                // FIXME pass that id down to your service, so we can use it in a network request
+            },
         }
     },
-    addLike() {
-        this.post.likes.push({})
-    },
-    async removePostById(postId) {
-        try {
-            if (await Pop.confirm('Would you like to remove your Posting? Are you surely sure?')) {
-                await postsService.removePostById(postId)
-                router.push({ name: 'Post' })
-            }
-        } catch (error) {
-            Pop.error(error, '[Removing Post]')
-            logger.log('Are you deleted?')
-        }
-    }
+
+
 }
 </script>
 

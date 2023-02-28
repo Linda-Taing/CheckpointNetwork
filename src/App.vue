@@ -37,6 +37,9 @@ import { profilesService } from './services/ProfilesService.js'
 import { logger } from './utils/Logger.js'
 import Pop from './utils/Pop.js'
 import { Ad } from './services/Ad.js'
+import { adsService } from './services/AdsService.js'
+import { ref } from 'vue'
+import { postsService } from './services/postsService.js'
 
 export default {
   props: {
@@ -45,21 +48,57 @@ export default {
 
   setup() {
 
+    // FIXME bring in your editable!  Complete
+    const editable = ref({})
+
+    async function getAllAds() {
+      try {
+        await adsService.getAllAds();
+      }
+      catch (error) {
+        logger.log(error);
+        Pop.error(error);
+      }
+    }
+
+    onMounted(() => {
+      getAllAds();
+    }
+    )
+
+    // FIXME go get your ads here!!!! Complete
     return {
+      editable,
+
       appState: computed(() => AppState),
-      ads: computed(() => AppState.ads)
+      ads: computed(() => AppState.ads),
+      async searchProfiles() {
+        try {
+          let searchData = editable.value
+          await profilesService.searchProfiles(searchData)
+          editable.value = {}
+        } catch (error) {
+          logger.error(error)
+          Pop.error(error.message)
+        }
+      },
+      async changePage(url) {
+        try {
+          // logger.log(url)
+          await postsService.changePage(url);
+        }
+        catch (error) {
+          console.error(error);
+
+          Pop.error('(change page?)', error.message);
+        }
+      },
+
     }
+
+
   },
-  async searchProfiles() {
-    try {
-      let searchData = editable.value
-      await profilesService.searchProfiles(searchData)
-      editable.value = {}
-    } catch (error) {
-      logger.error(error)
-      Pop.error(error.message)
-    }
-  },
+
   components: { Navbar }
 }
 </script>

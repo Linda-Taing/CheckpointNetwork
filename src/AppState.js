@@ -16,6 +16,11 @@ export const AppState = reactive({
   ads: [],
   /** @type {import('./models/Ad.js').Ad|null} */
   ad: null,
+  // FIXME set up somewhere to store your profiles COMPLTE
+  /** @type {import('./models/Profile.js').Profile|null} */
+  profile: null,
+  /** @type {import('./models/Profile.js').Profile[]} */
+  profiles: [],
 
   newerPage: null,
   olderPage: null

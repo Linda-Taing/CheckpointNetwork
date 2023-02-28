@@ -20,8 +20,9 @@
         </div>
     </div>
     <div class="d-flex justify-content-evenly">
-        <button class="btn btn-primary ms-3" :disabled="!olderPage" @click="changePage(olderPage)">Prev</button>
-        <button class="btn btn-secondary me-3" :disabled="!newerPage" @click="changePage(newerPage)">Next</button>
+        <!-- Note: Make sure the names are the same from the api. -->
+        <button class="btn btn-primary ms-3" :disabled="!newerPage" @click="changePage(newerPage)">Next</button>
+        <button class="btn btn-secondary me-3" :disabled="!olderPage" @click="changePage(olderPage)">Previous</button>
     </div>
 </template>
 
@@ -47,18 +48,10 @@ export default {
                 Pop.error(error);
             }
         }
-        async function getAllAds() {
-            try {
-                await adsService.getAllAds();
-            }
-            catch (error) {
-                logger.log(error);
-                Pop.error(error);
-            }
-        }
+
         onMounted(() => {
             getAllPosts();
-            getAllAds();
+
         });
 
         return {
@@ -67,19 +60,23 @@ export default {
             newerPage: computed(() => AppState.newerPage),
             olderPage: computed(() => AppState.olderPage),
             ads: computed(() => AppState.ads),
-            profiles: computed(() => AppState.profile)
+            profiles: computed(() => AppState.profile),
+
+            // Linda's note : need to look at this to adjust disabled buttons.
+            // async changePage(url) {
+            //     try {
+            //         // logger.log(url)
+            //         await postsService.changePage(url);
+            //     }
+            //     catch (error) {
+            //         console.error(error);
+
+            //         Pop.error('(change page?)', error.message);
+            //     }
+            // },
         };
     },
-    async changePage(url) {
-        try {
-            await postsService.changePage(url);
-        }
-        catch (error) {
-            console.error(error);
 
-            Pop.error('(change page?)', error.message);
-        }
-    },
     components: { PostCard, AdCard, ProfileCard }
 }
 </script>

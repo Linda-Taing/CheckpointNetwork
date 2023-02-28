@@ -3,21 +3,22 @@
         <div class="row ">
             <div class="col-md-12 ">
                 <form @submit.prevent="handleSubmit">
-                    <div class="mb-3 ">
-                        <label for="name" class="form-label"></label>
-                        <input required type="text" v-model="editable.name" class="form-control" id="name"
-                            placeholder="what it is your name" name="name">
+
+                    <div class="mb-3">
+                        <label for="picture" class="form-label"></label>
+                        <input required type="url" v-model="editable.picture" class="form-control" id="picture"
+                            placeholder="Your pics please!" name="picture">
                     </div>
                     <div class="mb-3">
-                        <label for="jobTitle" class="form-label"></label>
-                        <input required type="url" v-model="editable.picture" class="form-control" id="picture"
-                            placeholder="pics please!" name="picture">
+                        <label for="imgUrl" class="form-label"></label>
+                        <input required type="url" v-model="editable.imgUrl" class="form-control" id="imgUrl"
+                            placeholder="Your Post Picture Here..." name="imgUrl">
                     </div>
                     <div class="mb-3">
                         <label for="body" class="form-label"></label>
                         <textarea name="body" type="text" v-model="editable.body" class="form-control" id="body" rows="3"
                             placeholder="Spill the tea...">
-                                                                                                                            </textarea>
+                                                                                                                                            </textarea>
                     </div>
                     <div class="d-flex justify-content-center pb-2">
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
